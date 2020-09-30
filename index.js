@@ -1,15 +1,10 @@
 const express = require('express');
 
 const app = express();
-const router = express.Router();
+const productRoutes = require('./src/routes/products');
 
-router.use('/products', (req, res, next) => {
-    console.log('url: ', req.originalUrl);
-    console.log('method: ', req.method);
-    res.json({name: "Muhamad Fikri Mubarok", email: "muhamadfikri64@yahoo.co.id"});
-    next();
-})
+app.use('/', productRoutes);
 
-app.use('/', router);
+/** method use bisa digunakan untuk semua method tetapi jika menggunakan method khusus seperti get, put, atau yang lainnya maka method yang diterima hanya bisa itu saja */
 
 app.listen(4000);
