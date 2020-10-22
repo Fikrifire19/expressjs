@@ -54,3 +54,23 @@ exports.getAllPost = (req, res, next) => {
         next(err);
     });
 }
+
+exports.getPostById = (req, res, next) => {
+    const postId = req.params.postId;
+    BlogPost.findById(postId)
+    .then(result => {
+        if(!result) {
+            const error = new Error('Blog Post Tidak Ditemukan!');
+            error.errorStatus = 404;
+            throw error;
+        }
+
+        res.status(200).json({
+            message: 'Data Blog Post Berhasil Dipanggil',
+            data: result,
+        })
+    })
+    .catch(err => {
+        next(err);
+    })
+}

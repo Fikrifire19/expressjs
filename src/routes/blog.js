@@ -10,5 +10,6 @@ router.post('/create', [body('title').isLength({min: 5}).withMessage('input tida
 
 // {GET} : /v1/blog
 router.get('/posts', blogController.getAllPost);
+router.get('/post/:postId', blogController.getPostById);
 
 module.exports = router;
